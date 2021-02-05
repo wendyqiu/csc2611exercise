@@ -11,7 +11,7 @@ of RG65 that were not included in the top 5000 words from the Brown corpus. Deno
 total number of words in W as jWj.
 
 Step 3. Construct a word-context vector model (denoted by M1) by collecting bigram counts
-for words in W. The output should be a jWjjWj matrix (consider using sparse matrices
+for words in W. The output should be a jWj x jWj matrix (consider using sparse matrices
 for better effciency), where each row is a word in W, and each column is a context in W
 that precedes row words in sentences. For example, if the phrase taxi driver appears 5 times
 in the entire corpus, then row taxi and column driver should have a value of 5 in the matrix.
@@ -20,7 +20,7 @@ Step 4. Compute positive pointwise mutual information on M1. Denote this model a
 
 Step 5. Construct a latent semantic model (denoted by M2) by applying principal com-
 ponents analysis to M1+. The output should return 3 matrices, with different truncated
-dimenions at 10 (or a jWj10 matrix, denoted by M210), 100 (M2100), and 300 (M2300).
+dimenions at 10 (or a jWj x 10 matrix, denoted by M210), 100 (M2100), and 300 (M2300).
 
 Step 6. Find all pairs of words in Table 1 of RG65 that are also available in W. Denote
 these pairs as P. Record the human-judged similarities of these word pairs from the table
