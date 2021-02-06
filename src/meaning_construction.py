@@ -14,6 +14,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from scipy.stats import pearsonr
 
 NUM_TOP_WORDS = 5000
+# NUM_TOP_WORDS = 300
 
 # # # # # # # # # # # # # # # # # # # #  # # # # # helper functions # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -134,8 +135,9 @@ for word_row in combined_word_list:
     for word_col in combined_word_list:
         col_idx = combined_word_list.index(word_col)
         curr_freq = bigram_counts[(word_row, word_col)]
-        if curr_freq != 0:  # here we use co-occurrence with order
+        if curr_freq != 0:  # use co-occurrence without order, because the bigram count does not take order into account
             M1_dense[row_idx][col_idx] = curr_freq
+            M1_dense[col_idx][row_idx] = curr_freq
 
 # Step 4: Compute positive pointwise mutual information on M1. Denote this model as M1+
 
