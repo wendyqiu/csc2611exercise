@@ -12,9 +12,12 @@ import numpy as np
 from scipy.sparse import csr_matrix
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.stats import pearsonr
+import pickle
+from os.path import join
+import pandas as pd
 
 NUM_TOP_WORDS = 5000
-# NUM_TOP_WORDS = 300
+LOCAL_DIR = 'C:/Users/Ronghui/Documents/csc2611/lab/'
 
 # # # # # # # # # # # # # # # # # # # #  # # # # # helper functions # # # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -156,6 +159,14 @@ M2_10 = M2_full[:,:10]
 M2_100 = M2_full[:,:100]
 M2_300 = M2_full[:,:300]
 print("after shape of M2_10, M2_100, M2_300: {}, {}, {}".format(M2_10.shape, M2_100.shape, M2_300.shape))
+
+# save M2_300 for lab
+print("saving M2_300 embeddings...")
+df_M2_300 = df = pd.DataFrame(data=M2_300, index=combined_word_list)
+filename = join(LOCAL_DIR, 'embeddings/exercise/m2_300')
+outfile = open(filename, 'wb')
+pickle.dump(df_M2_300, outfile)
+outfile.close()
 
 # Step 6: Find all pairs of words in Table 1 of RG65 that are also available in W. Denote these pairs as P.
 # Record the human-judged similarities of these word pairs from the table and denote similarity values as S.
